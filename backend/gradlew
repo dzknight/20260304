@@ -1,0 +1,15 @@
+#!/bin/sh
+set -eu
+
+GRADLE_DIST="$TMPDIR/gradle-8.12.1-bin/gradle-8.12.1"
+if [ -x "$GRADLE_DIST/bin/gradle" ]; then
+  "$GRADLE_DIST/bin/gradle" "$@"
+else
+  if command -v gradle >/dev/null 2>&1; then
+    gradle "$@"
+  else
+    echo "[ERROR] gradle 실행 파일을 찾을 수 없습니다."
+    echo "다음 경로를 확인해 주세요: $GRADLE_DIST/bin/gradle"
+    exit 1
+  fi
+fi

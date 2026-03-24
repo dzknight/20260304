@@ -1,0 +1,131 @@
+version: "3.9"
+
+services:
+  db:
+    image: mariadb:11.4
+    container_name: community-db
+    restart: always
+    stop_grace_period: 30s
+    environment:
+      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
+      MYSQL_DATABASE: ${MYSQL_DATABASE}
+      MYSQL_USER: ${MYSQL_USER}
+      MYSQL_PASSWORD: ${MYSQL_PASSWORD}
+    volumes:
+      - db_data:/var/lib/mysql
+    healthcheck:
+      test: ["CMD-SHELL", "mysqladmin ping -h 127.0.0.1 -u${MYSQL_USER} -p${MYSQL_PASSWORD} --silent"]
+      interval: 10s
+      timeout: 5s
+      retries: 12
+      start_period: 30s
+    networks:
+      - community-net
+
+  backend:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    image: community-backend:prod
+    container_name: community-backend
+    restart: always
+    stop_grace_period: 60s
+    depends_on:
+      db:
+        condition: service_healthy
+    environment:
+      SPRING_PROFILES_ACTIVE: prod
+      SERVER_PORT: 8080
+      SPRING_DATASOURCE_URL: jdbc:mariadb://db:${MYSQL_PORT}/${MYSQL_DATABASE}?useSSL=false&allowPublicKeyRetrieval=true&serverTimezone=Asia/Seoul
+      SPRING_DATASOURCE_USERNAME: ${MYSQL_USER}
+      SPRING_DATASOURCE_PASSWORD: ${MYSQL_PASSWORD}
+      APP_JWT_SECRET: ${APP_JWT_SECRET}
+      APP_JWT_EXPIRATION_MS: ${APP_JWT_EXPIRATION_MS}
+      APP_ALLOWED_ORIGINS: ${APP_ALLOWED_ORIGINS}
+      TZ: Asia/Seoul
+    expose:
+      - "8080"
+    healthcheck:
+      test: ["CMD-SHELL", "curl -fsS http://127.0.0.1:8080/actuator/health | grep -q '\"status\":\"UP\"' || exit 1"]
+      interval: 15s
+      timeout: 5s
+      retries: 20
+      start_period: 40s
+    networks:
+      - community-net
+
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+      args:
+        VITE_API_BASE_URL: ${VITE_API_BASE_URL}
+    image: community-frontend:prod
+    container_name: community-frontend
+    restart: always
+    stop_grace_period: 30s
+    depends_on:
+      backend:
+        condition: service_healthy
+    expose:
+      - "80"
+    healthcheck:
+      test: ["CMD-SHELL", "test -f /usr/share/nginx/html/index.html"]
+      interval: 15s
+      timeout: 5s
+      retries: 6
+      start_period: 20s
+    networks:
+      - community-net
+
+  proxy:
+    build:
+      context: .
+      dockerfile: nginx/proxy/Dockerfile
+    image: community-proxy:prod
+    container_name: community-proxy
+    restart: always
+    stop_grace_period: 30s
+    depends_on:
+      backend:
+        condition: service_healthy
+      frontend:
+        condition: service_healthy
+    environment:
+      DOMAIN_NAME: ${DOMAIN_NAME}
+      ENABLE_HTTPS: ${ENABLE_HTTPS}
+      LETSENCRYPT_ENABLED: ${LETSENCRYPT_ENABLED}
+      LETSENCRYPT_EMAIL: ${LETSENCRYPT_EMAIL}
+      LETSENCRYPT_STAGING: ${LETSENCRYPT_STAGING}
+      LETSENCRYPT_RENEW_INTERVAL_HOURS: ${LETSENCRYPT_RENEW_INTERVAL_HOURS}
+      LETSENCRYPT_LOG_FORMAT: ${LETSENCRYPT_LOG_FORMAT}
+      SSL_CERT_PATH: ${SSL_CERT_PATH}
+      SSL_KEY_PATH: ${SSL_KEY_PATH}
+    volumes:
+      - letsencrypt_data:/etc/letsencrypt
+      - acme_webroot:/var/www/certbot
+      - ${SSL_CERT_DIR:-./nginx/ssl}:/etc/nginx/certs:ro
+    ports:
+      - "${PROXY_HTTP_PORT}:80"
+      - "${PROXY_HTTPS_PORT}:443"
+    healthcheck:
+      test: ["CMD-SHELL", "nginx -t && pidof nginx > /dev/null"]
+      interval: 15s
+      timeout: 5s
+      retries: 12
+      start_period: 25s
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "20m"
+        max-file: "3"
+    networks:
+      - community-net
+
+volumes:
+  db_data:
+  letsencrypt_data:
+  acme_webroot:
+
+networks:
+  community-net:

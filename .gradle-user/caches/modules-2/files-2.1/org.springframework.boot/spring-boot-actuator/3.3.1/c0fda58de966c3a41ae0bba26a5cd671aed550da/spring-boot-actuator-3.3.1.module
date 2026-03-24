@@ -1,0 +1,174 @@
+{
+  "formatVersion": "1.1",
+  "component": {
+    "group": "org.springframework.boot",
+    "module": "spring-boot-actuator",
+    "version": "3.3.1",
+    "attributes": {
+      "org.gradle.status": "release"
+    }
+  },
+  "createdBy": {
+    "gradle": {
+      "version": "7.6.4"
+    }
+  },
+  "variants": [
+    {
+      "name": "apiElements",
+      "attributes": {
+        "org.gradle.category": "library",
+        "org.gradle.dependency.bundling": "external",
+        "org.gradle.jvm.version": 17,
+        "org.gradle.libraryelements": "jar",
+        "org.gradle.usage": "java-api"
+      },
+      "dependencies": [
+        {
+          "group": "org.springframework.boot",
+          "module": "spring-boot",
+          "version": {
+            "requires": "3.3.1"
+          }
+        }
+      ],
+      "files": [
+        {
+          "name": "spring-boot-actuator-3.3.1.jar",
+          "url": "spring-boot-actuator-3.3.1.jar",
+          "size": 676055,
+          "sha512": "eee698cbcd6f9b3c04c0522c1fd34feeda02833eca60ce60bd79b8500895272f9c016b99d8f9b2cbb8347086300cd338c00003b04e6bce9a7b9885ea9533042b",
+          "sha256": "ccf5d1c895d9918f3ff1a82aca08af5c8fd0d34f3b246ff4a752138da89b0300",
+          "sha1": "02ed9e9157751616d40b0b106036d9c4e8379250",
+          "md5": "8f76912ae427c477774bfa53755227ef"
+        }
+      ]
+    },
+    {
+      "name": "runtimeElements",
+      "attributes": {
+        "org.gradle.category": "library",
+        "org.gradle.dependency.bundling": "external",
+        "org.gradle.jvm.version": 17,
+        "org.gradle.libraryelements": "jar",
+        "org.gradle.usage": "java-runtime"
+      },
+      "dependencies": [
+        {
+          "group": "org.springframework.boot",
+          "module": "spring-boot",
+          "version": {
+            "requires": "3.3.1"
+          }
+        }
+      ],
+      "files": [
+        {
+          "name": "spring-boot-actuator-3.3.1.jar",
+          "url": "spring-boot-actuator-3.3.1.jar",
+          "size": 676055,
+          "sha512": "eee698cbcd6f9b3c04c0522c1fd34feeda02833eca60ce60bd79b8500895272f9c016b99d8f9b2cbb8347086300cd338c00003b04e6bce9a7b9885ea9533042b",
+          "sha256": "ccf5d1c895d9918f3ff1a82aca08af5c8fd0d34f3b246ff4a752138da89b0300",
+          "sha1": "02ed9e9157751616d40b0b106036d9c4e8379250",
+          "md5": "8f76912ae427c477774bfa53755227ef"
+        }
+      ]
+    },
+    {
+      "name": "javadocElements",
+      "attributes": {
+        "org.gradle.category": "documentation",
+        "org.gradle.dependency.bundling": "external",
+        "org.gradle.docstype": "javadoc",
+        "org.gradle.usage": "java-runtime"
+      },
+      "files": [
+        {
+          "name": "spring-boot-actuator-3.3.1-javadoc.jar",
+          "url": "spring-boot-actuator-3.3.1-javadoc.jar",
+          "size": 1474201,
+          "sha512": "2aa678fc378fb2c34f09405f37c90e3928a9852c2e54f23adc314ac5a7ad8f9cf2f12ffe334d0d257a8b170961d2b1d52c230e0d0107217b5d67840adabdfec8",
+          "sha256": "e3180ca2519e80e7506c937af51000438efcd569bc91d7ffe252ce8ee8ddc6f5",
+          "sha1": "6a9479b1c662ee80c66b1cc723661c805e061411",
+          "md5": "01c85a0b3ccf5e53af494fe3af99967b"
+        }
+      ]
+    },
+    {
+      "name": "sourcesElements",
+      "attributes": {
+        "org.gradle.category": "documentation",
+        "org.gradle.dependency.bundling": "external",
+        "org.gradle.docstype": "sources",
+        "org.gradle.usage": "java-runtime"
+      },
+      "files": [
+        {
+          "name": "spring-boot-actuator-3.3.1-sources.jar",
+          "url": "spring-boot-actuator-3.3.1-sources.jar",
+          "size": 458727,
+          "sha512": "d4b08030bd953bd87bc72ba9494c25b381ea48e782c27c301d58c1cc9111536c453abc167814e9c644b8e8d2259c5848e41c1987381e3d865894f593df10a6e7",
+          "sha256": "8e6d4f8492c2eff97e9c1cbb839aa6fe6905e3d6e5e7dc784787d749d0dbd140",
+          "sha1": "bcbc9f4107efa8cb5016907ebcaf501ab7c0c2d5",
+          "md5": "4901f44c8961f10c998bb5a8b748fcb3"
+        }
+      ]
+    },
+    {
+      "name": "mavenOptionalApiElements",
+      "attributes": {
+        "org.gradle.category": "library",
+        "org.gradle.dependency.bundling": "external",
+        "org.gradle.jvm.version": 17,
+        "org.gradle.libraryelements": "jar",
+        "org.gradle.usage": "java-api"
+      },
+      "files": [
+        {
+          "name": "spring-boot-actuator-3.3.1.jar",
+          "url": "spring-boot-actuator-3.3.1.jar",
+          "size": 676055,
+          "sha512": "eee698cbcd6f9b3c04c0522c1fd34feeda02833eca60ce60bd79b8500895272f9c016b99d8f9b2cbb8347086300cd338c00003b04e6bce9a7b9885ea9533042b",
+          "sha256": "ccf5d1c895d9918f3ff1a82aca08af5c8fd0d34f3b246ff4a752138da89b0300",
+          "sha1": "02ed9e9157751616d40b0b106036d9c4e8379250",
+          "md5": "8f76912ae427c477774bfa53755227ef"
+        }
+      ],
+      "capabilities": [
+        {
+          "group": "org.springframework.boot",
+          "name": "spring-boot-actuator-maven-optional",
+          "version": "3.3.1"
+        }
+      ]
+    },
+    {
+      "name": "mavenOptionalRuntimeElements",
+      "attributes": {
+        "org.gradle.category": "library",
+        "org.gradle.dependency.bundling": "external",
+        "org.gradle.jvm.version": 17,
+        "org.gradle.libraryelements": "jar",
+        "org.gradle.usage": "java-runtime"
+      },
+      "files": [
+        {
+          "name": "spring-boot-actuator-3.3.1.jar",
+          "url": "spring-boot-actuator-3.3.1.jar",
+          "size": 676055,
+          "sha512": "eee698cbcd6f9b3c04c0522c1fd34feeda02833eca60ce60bd79b8500895272f9c016b99d8f9b2cbb8347086300cd338c00003b04e6bce9a7b9885ea9533042b",
+          "sha256": "ccf5d1c895d9918f3ff1a82aca08af5c8fd0d34f3b246ff4a752138da89b0300",
+          "sha1": "02ed9e9157751616d40b0b106036d9c4e8379250",
+          "md5": "8f76912ae427c477774bfa53755227ef"
+        }
+      ],
+      "capabilities": [
+        {
+          "group": "org.springframework.boot",
+          "name": "spring-boot-actuator-maven-optional",
+          "version": "3.3.1"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,18 @@
+spring:
+  datasource:
+    url: jdbc:mariadb://localhost:3306/community?useSSL=false&serverTimezone=Asia/Seoul
+    username: root
+    password: 1111
+    driver-class-name: org.mariadb.jdbc.Driver
+
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+    properties:
+      hibernate:
+        format_sql: true
+
+app:
+  cors:
+    allowed-origins: http://localhost:5173
