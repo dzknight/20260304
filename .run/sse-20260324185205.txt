@@ -1,9 +1,0 @@
-event:notification
-data:{"type":"UNREAD_COUNT","sender":"","title":"","messageId":null,"unreadCount":0}
-
-event:notification
-data:{"type":"NEW_MESSAGE","sender":"flowa_20260324185205","title":"Ping 20260324185205","messageId":3,"unreadCount":1}
-
-event:notification
-data:{"type":"UNREAD_COUNT","sender":"","title":"","messageId":null,"unreadCount":0}
-
