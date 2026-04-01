@@ -31,3 +31,11 @@ dependencies {
 tasks.named('test') {
     useJUnitPlatform()
 }
+
+tasks.withType(JavaCompile).configureEach {
+    options.encoding = 'UTF-8'
+}
+
+bootRun {
+    jvmArgs = ['-Dfile.encoding=UTF-8', '-Dstdout.encoding=UTF-8']
+}

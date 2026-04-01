@@ -1,0 +1,41 @@
+# Environment
+.env
+.env.*
+!.env.example
+
+# Gradle
+.gradle/
+backend/.gradle/
+build/
+backend/build/
+!gradle/wrapper/gradle-wrapper.jar
+
+# Compiled class files
+*.class
+
+# Logs
+*.log
+.run/
+.npm-cache/
+
+# IDE
+.idea/
+*.iws
+*.iml
+*.ipr
+.vscode/
+*.suo
+*.user
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Node
+node_modules/
+frontend/node_modules/
+frontend/.next/
+frontend/dist/
+
+# Claude local memory (not project-level)
+.claude/

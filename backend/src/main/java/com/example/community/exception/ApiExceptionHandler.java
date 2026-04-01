@@ -1,6 +1,7 @@
 package com.example.community.exception;
 
 import jakarta.servlet.http.HttpServletRequest;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.AccessDeniedException;
@@ -13,6 +14,7 @@ import java.time.LocalDateTime;
 import java.util.Map;
 import java.util.stream.Collectors;
 
+@Slf4j
 @RestControllerAdvice
 public class ApiExceptionHandler {
 
@@ -47,6 +49,7 @@ public class ApiExceptionHandler {
 
     @ExceptionHandler(Exception.class)
     public ResponseEntity<Map<String, Object>> handleServerError(Exception e, HttpServletRequest request) {
+        log.error("[500] {} {}", request.getMethod(), request.getRequestURI(), e);
         return response(HttpStatus.INTERNAL_SERVER_ERROR, "서버 내부 오류가 발생했습니다.", request);
     }
 
